@@ -19,7 +19,7 @@ pub async fn set_nick(
         .edit_member(ctx.http(), target.user.id, |m| m.nickname(&newnick))
         .await?;
 
-    let response = format!("{target} now has nickname {newnick}");
+    let response = format!("{target} now has nickname `{newnick}`");
     ctx.send(|r| r.content(response).ephemeral(true)).await?;
     Ok(())
 }
