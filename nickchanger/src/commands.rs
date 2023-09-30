@@ -10,13 +10,16 @@ pub async fn set_nick(
     #[description = "Target"] target: serenity::Member,
     #[description = "New Nickname"] newnick: String,
 ) -> Result<(), Error> {
+    if newnick.len() < 1 || newnick.len() > 32 {
+        ctx.send(|r| r.content("That username is too long - it must be between 1 and 32 chars").ephemeral(true)).await?;
+        return Ok(())
+    }
     ctx.guild()
         .unwrap()
         .edit_member(ctx.http(), target.user.id, |m| m.nickname(&newnick))
-        .await
-        .unwrap();
+        .await?;
 
     let response = format!("{target} now has nickname {newnick}");
-    ctx.reply(response).await?;
+    ctx.send(|r| r.content(response).ephemeral(true)).await?;
     Ok(())
 }
