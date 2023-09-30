@@ -1,9 +1,9 @@
 use crate::{Context, Error};
 use poise::serenity_prelude as serenity;
 
-/// Vote for something
+/// Set someone's nick. No logs, no exceptions.
 ///
-/// Enter `~vote pumpkin` to vote for pumpkins
+/// 
 #[poise::command(slash_command)]
 pub async fn set_nick(
     ctx: Context<'_>,
