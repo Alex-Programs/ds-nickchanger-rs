@@ -10,6 +10,7 @@ pub async fn set_nick(
     #[description = "Target"] target: serenity::Member,
     #[description = "New Nickname"] newnick: String,
 ) -> Result<(), Error> {
+    /*
     if target.user.id == ctx.author().id {
         ctx.send(|r| {
             r.content(format!(
@@ -20,6 +21,7 @@ pub async fn set_nick(
         .await?;
         return Ok(());
     }
+    */
 
     if newnick.len() < 1 || newnick.len() > 32 {
         ctx.send(|r| {
